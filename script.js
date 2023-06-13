@@ -96,12 +96,12 @@ function checkStatus() {
     // disableButtons()
     if(apBar == 0) {
         disableButtons();
-        $('.freaky-fungus').removeClass('.walk');
+        $('.freaky-fungus').removeClass('walk');
         $('.freaky-fungus').addClass('jump');
         console.log('out of energy, disabling buttons')
     }
     if(fungusHp <= 0) {
-        $('.freaky-fungus').removeClass('.walk');
+        $('.freaky-fungus').removeClass('walk');
         $('.freaky-fungus').addClass('dead');
     }
 }
