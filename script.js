@@ -7,6 +7,7 @@ $(document).ready(onReady);
 let fungusHp = 100;
 let apBar = 100;
 
+
 function onReady() {
     $('.arcane-scepter').on('click', acAttack);
     $('.entangle').on('click', entangleAttack);
@@ -94,16 +95,30 @@ function damageapStatus() {
 function checkStatus() {
     console.log(`Checking status of AP Bar: ${apBar} and HP bar: ${fungusHp}`)
     // disableButtons()
+    
     if(apBar == 0) {
         disableButtons();
         $('.freaky-fungus').removeClass('walk');
         $('.freaky-fungus').addClass('jump');
         console.log('out of energy, disabling buttons')
     }
+    if(fungusHp <= 50) {
+        let regenInterval = setInterval(regen, 1000);
+    }
     if(fungusHp <= 0) {
         $('.freaky-fungus').removeClass('walk');
         $('.freaky-fungus').addClass('dead');
+        stopRegen();
     }
+}
+
+function regen() {
+    fungusHp += 1;
+    damageapStatus();
+}
+
+function stopRegen(){
+    clearInterval(regenInterval);
 }
 
 function disableButtons() {
