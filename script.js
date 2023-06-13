@@ -6,7 +6,7 @@ $(document).ready(onReady);
 // let fungusHP = 100;
 let fungusHp = 100;
 let apBar = 100;
-
+let regenInterval = null;
 
 function onReady() {
     $('.arcane-scepter').on('click', acAttack);
@@ -31,8 +31,6 @@ function acAttack() {
     apBar -= 12;
     fungusHp -=14;
     negativeBar();
-    console.log('New AP bar value', apBar);
-    console.log('New Fungus HP is: ', fungusHp);
     damageapStatus();
     checkStatus();
 }
@@ -102,8 +100,8 @@ function checkStatus() {
         $('.freaky-fungus').addClass('jump');
         console.log('out of energy, disabling buttons')
     }
-    if(fungusHp <= 50) {
-        let regenInterval = setInterval(regen, 1000);
+    if(regenInterval === null && fungusHp <= 50) {
+        regenInterval = setInterval(regen, 1000)
     }
     if(fungusHp <= 0) {
         $('.freaky-fungus').removeClass('walk');
