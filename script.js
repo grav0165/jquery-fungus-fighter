@@ -8,7 +8,10 @@ let fungusHp = 100;
 let apBar = 100;
 
 function onReady() {
-    $('.arcane-scepter').on('click', acAttack)
+    $('.arcane-scepter').on('click', acAttack);
+    $('.entangle').on('click', entangleAttack);
+    $('.dragon-blade').on('click', dragonbladeAttack);
+    $('.star-fire').on('click', starfireAttack);
     // Make sure you check the index.html file! 
     // There are lots of buttons and things ready for you to hook into here!
     
@@ -23,40 +26,55 @@ function acAttack() {
     console.log('arcane scepter attack');
     // - **AP Cost:** 12
     // - **HP Damage:** 14
-
-    if(apBar > 12) {
-        apBar -= 12;
-        fungusHp -=14;
-        console.log('New AP bar value', apBar);
-        console.log('New Fungus HP is: ', fungusHp);
-        $('.hp-text').text(fungusHp);
-        $('#hp-meter').val(fungusHp);
-        $('.ap-text').text(apBar);
-        $('#ap-meter').val(apBar);
-    } else {
-        
-    }
+    apBar -= 12;
+    fungusHp -=14;
+    console.log('New AP bar value', apBar);
+    console.log('New Fungus HP is: ', fungusHp);
+    damageapStatus();
     checkStatus();
 }
 
-function acAttack() {
+function entangleAttack() {
     console.log('entangle');
     // - **AP Cost:** 23
     // - **HP Damage:** 9
-
-    if(apBar > 12) {
-        apBar -= 12;
-        fungusHp -=14;
-        console.log('New AP bar value', apBar);
-        console.log('New Fungus HP is: ', fungusHp);
-        $('.hp-text').text(fungusHp);
-        $('#hp-meter').val(fungusHp);
-        $('.ap-text').text(apBar);
-        $('#ap-meter').val(apBar);
-    } else {
-        
-    }
+    apBar -= 23;
+    fungusHp -=9;
+    console.log('New AP bar value', apBar);
+    console.log('New Fungus HP is: ', fungusHp);
+    damageapStatus()
     checkStatus();
+}
+
+function dragonbladeAttack() {
+    console.log('dragon blade attack');
+    // -- **AP Cost:** 38
+    // - **HP Damage:** 47
+    apBar -= 38;
+    fungusHp -=47;
+    console.log('New AP bar value', apBar);
+    console.log('New Fungus HP is: ', fungusHp);
+    damageapStatus()
+    checkStatus();
+}
+
+function starfireAttack() {
+    console.log('starfire attack attack');
+    // - **AP Cost:** 33
+    // - **HP Damage:** 25
+    apBar -= 33;
+    fungusHp -=25;
+    console.log('New AP bar value', apBar);
+    console.log('New Fungus HP is: ', fungusHp);
+    damageapStatus();
+    checkStatus();
+}
+
+function damageapStatus() {
+    $('.hp-text').text(fungusHp);
+    $('#hp-meter').val(fungusHp);
+    $('.ap-text').text(apBar);
+    $('#ap-meter').val(apBar);
 }
 
 function checkStatus() {
