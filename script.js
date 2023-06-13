@@ -28,10 +28,20 @@ function acAttack() {
     // - **HP Damage:** 14
     apBar -= 12;
     fungusHp -=14;
+    negativeBar();
     console.log('New AP bar value', apBar);
     console.log('New Fungus HP is: ', fungusHp);
     damageapStatus();
     checkStatus();
+}
+
+function negativeBar() {
+    if(apBar <=0) {
+        apBar=0;
+    }
+    if(fungusHp <= 0) {
+        fungusHp = 0;
+    }
 }
 
 function entangleAttack() {
@@ -40,6 +50,7 @@ function entangleAttack() {
     // - **HP Damage:** 9
     apBar -= 23;
     fungusHp -=9;
+    negativeBar();
     console.log('New AP bar value', apBar);
     console.log('New Fungus HP is: ', fungusHp);
     damageapStatus()
@@ -52,6 +63,7 @@ function dragonbladeAttack() {
     // - **HP Damage:** 47
     apBar -= 38;
     fungusHp -=47;
+    negativeBar();
     console.log('New AP bar value', apBar);
     console.log('New Fungus HP is: ', fungusHp);
     damageapStatus()
@@ -64,6 +76,7 @@ function starfireAttack() {
     // - **HP Damage:** 25
     apBar -= 33;
     fungusHp -=25;
+    negativeBar();
     console.log('New AP bar value', apBar);
     console.log('New Fungus HP is: ', fungusHp);
     damageapStatus();
