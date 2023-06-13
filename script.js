@@ -12,6 +12,7 @@ function onReady() {
     $('.entangle').on('click', entangleAttack);
     $('.dragon-blade').on('click', dragonbladeAttack);
     $('.star-fire').on('click', starfireAttack);
+    $('.attack-btn').on('click', disableButtons);
     // Make sure you check the index.html file! 
     // There are lots of buttons and things ready for you to hook into here!
     
@@ -35,15 +36,6 @@ function acAttack() {
     checkStatus();
 }
 
-function negativeBar() {
-    if(apBar <=0) {
-        apBar=0;
-    }
-    if(fungusHp <= 0) {
-        fungusHp = 0;
-    }
-}
-
 function entangleAttack() {
     console.log('entangle');
     // - **AP Cost:** 23
@@ -53,7 +45,7 @@ function entangleAttack() {
     negativeBar();
     console.log('New AP bar value', apBar);
     console.log('New Fungus HP is: ', fungusHp);
-    damageapStatus()
+    damageapStatus();
     checkStatus();
 }
 
@@ -83,6 +75,15 @@ function starfireAttack() {
     checkStatus();
 }
 
+function negativeBar() {
+    if(apBar <=0) {
+        apBar=0;
+    }
+    if(fungusHp <= 0) {
+        fungusHp = 0;
+    }
+}
+
 function damageapStatus() {
     $('.hp-text').text(fungusHp);
     $('#hp-meter').val(fungusHp);
@@ -91,13 +92,23 @@ function damageapStatus() {
 }
 
 function checkStatus() {
-    if(apBar <= 0) {
+    console.log(`Checking status of AP Bar: ${apBar} and HP bar: ${fungusHp}`)
+    // disableButtons()
+    if(apBar == 0) {
+        disableButtons();
         $('.freaky-fungus').removeClass('.walk');
         $('.freaky-fungus').addClass('jump');
+        console.log('out of energy, disabling buttons')
     }
     if(fungusHp <= 0) {
         $('.freaky-fungus').removeClass('.walk');
         $('.freaky-fungus').addClass('dead');
     }
-
 }
+
+function disableButtons() {
+    if(apBar === 0) {
+        $('.attack-btn').attr("disabled", "true")
+    }
+}
+
